@@ -922,6 +922,7 @@ sp<MediaSource> StagefrightRecorder::createAudioSource() {
     }
 
 #ifdef QCOM_HARDWARE
+#ifndef NO_TUNNEL_RECORDING
     bool tunneledSource = false;
     const char *tunnelMime;
 
@@ -948,6 +949,7 @@ sp<MediaSource> StagefrightRecorder::createAudioSource() {
         audioSource = new AudioSource( mAudioSource, meta);
         return audioSource->initCheck( ) == OK ? audioSource : NULL;
     }
+#endif
 #endif
 
     sp<AudioSource> audioSource =
